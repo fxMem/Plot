@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,12 @@ namespace PlainValley.Plot.Core
 {
     public class Character: Entity
     {
-        public MultiLangText CharacterName { get; set; }
+        [JsonProperty("AS")]
+        public EntityCollection<CharacterAlias, CollectionOneIdFactory<CharacterAlias>> Aliases { get; set; }
 
         public Character()
         {
-            CharacterName = new MultiLangText();
+            Aliases = new EntityCollection<CharacterAlias, CollectionOneIdFactory<CharacterAlias>>();
         }
     }
 }

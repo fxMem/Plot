@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,16 @@ namespace PlainValley.Plot.Core
 {
     public class ChoiceLine: Line
     {
-        public EntityId CharacterId { get; set; }
+        [JsonProperty("CI")]
+        public CharacteRef Character { get; set; }
 
+        [JsonProperty("VI")]
         public EntityId VariableId { get; set; }
 
+        [JsonProperty("C")]
         public List<Choice> Choices { get; set; }
 
+        [JsonProperty("T")]
         public MultiLangText Text { get; set; }
 
         public ChoiceLine()

@@ -10,14 +10,40 @@ namespace PlainValley.Plot.Core
 {
     class JsonBinder : SerializationBinder
     {
+        private Dictionary<Type, string> _manualBindings = new Dictionary<Type, string>
+        {
+            { typeof(OneEntityId), "O" },
+            { typeof(StringEntityId), "S" },
+            { typeof(TextLine), "T" }
+        };
+
+        private Dictionary<string, Type> _manualBindingsRev = new Dictionary<string, Type>();
+
+        public JsonBinder()
+        {
+            _manualBindingsRev = _manualBindings.ToDictionary(b => b.Value, b => b.Key);
+        }
+
         public override void BindToName(Type serializedType, out string assemblyName, out string typeName)
         {
             assemblyName = null;
-            typeName = serializedType.FullName;
+            if (_manualBindings.ContainsKey(serializedType))
+            {
+                typeName = _manualBindings[serializedType];
+            }
+            else
+            {
+                typeName = serializedType.FullName;
+            }
         }
 
         public override Type BindToType(string assemblyName, string typeName)
         {
+            if (_manualBindingsRev.ContainsKey(typeName))
+            {
+                return _manualBindingsRev[typeName];
+            }
+
             return typeof(Script).Assembly.GetType(typeName);
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,10 @@ namespace PlainValley.Plot.Core
 {
     public class GoToLine: UtilityLine
     {
+        [JsonProperty("TR")]
         public GlobalLineId Target { get; set; }
 
+        [JsonProperty("T")]
         public MultiLangText Text { get; set; }
 
         public GoToLine()

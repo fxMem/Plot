@@ -86,12 +86,12 @@ namespace PlainValley.Plot.Core
 
         public void SelectChoice(EntityId choiceId)
         {
-            TraceVerbose($"Selected choice with id = {choiceId}");
+            TraceVerbose($"Selected choice with id = {choiceId.ToStringDebug()}");
 
             var choiceLine = CurrentLine as ChoiceLine;
             if (choiceLine == null)
             {
-                throw new InvalidOperationException($"Can't select choice {choiceId} cause current line {CurrentLine.Id} is not choice line!");
+                throw new InvalidOperationException($"Can't select choice {choiceId.ToStringDebug()} cause current line {CurrentLine.Id.ToStringDebug()} is not choice line!");
             }
 
             InvokeInContext((c) =>
@@ -117,21 +117,21 @@ namespace PlainValley.Plot.Core
         internal void MoveToNextLine()
         {
             var nextLine = CurrentBlock.GetNextLine(CurrentLine);
-            TraceVerbose($"Internal: moving to next line {nextLine.Id}");
+            TraceVerbose($"Internal: moving to next line {nextLine.Id.ToStringDebug()}");
 
             _progress.CurrentLineId = nextLine.Id;
         }
 
         internal void MoveTo(GlobalLineId id)
         {
-            TraceVerbose($"Internal: moving to line {id}");
+            TraceVerbose($"Internal: moving to line {id.ToStringDebug()}");
 
             if (id.ChapterId != null)
             {
                 var chapter = _script.Chapters[id.ChapterId];
                 if (chapter == null)
                 {
-                    throw new ArgumentException($"Chapter with id = {id.ChapterId} is not found!");
+                    throw new ArgumentException($"Chapter with id = {id.ChapterId.ToStringDebug()} is not found!");
                 }
 
                 _progress.CurrentChapterId = chapter.Id;
@@ -149,7 +149,7 @@ namespace PlainValley.Plot.Core
                 block = CurrentChapter.Blocks[id.BlockId];
                 if (block == null)
                 {
-                    throw new ArgumentException($"Block with id = {id.ChapterId} is not found in chapter {id.ChapterId}!");
+                    throw new ArgumentException($"Block with id = {id.ChapterId.ToStringDebug()} is not found in chapter {id.ChapterId}!");
                 }
 
                 _progress.CurrentBlockId = block.Id;
@@ -180,7 +180,7 @@ namespace PlainValley.Plot.Core
             
             if (line == null)
             {
-                throw new ArgumentException($"Line with id = {id.LineId} is not found in block {id.BlockId}, chapter = {id.ChapterId}!");
+                throw new ArgumentException($"Line with id = {id.LineId.ToStringDebug()} is not found in block {id.BlockId}, chapter = {id.ChapterId}!");
             }
 
             _progress.CurrentLineId = line.Id;
@@ -207,7 +207,7 @@ namespace PlainValley.Plot.Core
                 var block = chapter.Blocks[chapter.StartBlockId];
                 if (block == null)
                 {
-                    throw new InvalidOperationException($"Start block with id = {chapter.StartBlockId} is missing!");
+                    throw new InvalidOperationException($"Start block with id = {chapter.StartBlockId.ToStringDebug()} is missing!");
                 }
 
                 _progress.CurrentBlockId = block.Id;
@@ -215,7 +215,7 @@ namespace PlainValley.Plot.Core
                 var line = block.GetFirstLine();
                 if (line == null)
                 {
-                    throw new InvalidOperationException($"Start line for block {chapter.StartBlockId} is missing!");
+                    throw new InvalidOperationException($"Start line for block {chapter.StartBlockId.ToStringDebug()} is missing!");
                 }
 
                 _progress.CurrentLineId = line.Id;

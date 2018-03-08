@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace PlainValley.Plot.Core
 {
     public class OneEntityId : EntityId
     {
+        [JsonProperty("I")]
         public double Id { get; set; }
 
         protected override bool EqualsInternal(object obj)

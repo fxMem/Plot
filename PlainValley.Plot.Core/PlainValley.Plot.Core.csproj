@@ -50,6 +50,8 @@
     <Compile Include="Block.cs" />
     <Compile Include="Chapter.cs" />
     <Compile Include="Character.cs" />
+    <Compile Include="CharacterAlias.cs" />
+    <Compile Include="CharacteRef.cs" />
     <Compile Include="Choice.cs" />
     <Compile Include="ChoiceLine.cs" />
     <Compile Include="CollectionOneIdFactory.cs" />

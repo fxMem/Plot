@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace PlainValley.Plot.Core
 {
     public class Block: Entity
     {
+        [JsonProperty("L")]
         public EntityCollection<Line, CollectionOneIdFactory<Line>> Lines { get; set; }
 
         public Block()

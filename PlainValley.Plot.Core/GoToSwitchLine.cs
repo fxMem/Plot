@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,13 @@ namespace PlainValley.Plot.Core
 {
     public class GoToSwitchLine: UtilityLine
     {
+        [JsonProperty("V")]
         public EntityId Variable { get; set; }
 
+        [JsonProperty("TS")]
         public Dictionary<string, GlobalLineId> Targets { get; set; }
 
+        [JsonProperty("F")]
         public bool AllowFallthrough { get; set; }
 
         public override void Invoke(LineContext context)

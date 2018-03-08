@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,19 @@ namespace PlainValley.Plot.Core
 {
     public class MultiLangText
     {
+        [JsonProperty("T")]
         public EntityRefDictionary<string> Texts { get; set; }
 
         public MultiLangText()
         {
             Texts = new EntityRefDictionary<string>();
+        }
+
+        public static MultiLangText Create(EntityId languageKey, string text)
+        {
+            var result = new MultiLangText();
+            result.SetText(languageKey, text);
+            return result;
         }
 
         public string GetTranslation(EntityId languageKey)

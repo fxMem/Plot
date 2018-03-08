@@ -52,6 +52,11 @@ namespace PlainValley.Plot.Core
 
         public override string ToString()
         {
+            return FormatIdString();
+        }
+
+        public virtual string ToStringDebug()
+        {
             return $"[Id ({GetType().Name}): {FormatIdString()}]";
         }
 

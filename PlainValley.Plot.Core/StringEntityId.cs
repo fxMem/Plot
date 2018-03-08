@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace PlainValley.Plot.Core
 {
     public class StringEntityId: EntityId
     {
+        [JsonProperty("N")]
         public string Name { get; set; }
 
         public StringEntityId()

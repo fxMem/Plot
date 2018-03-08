@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace PlainValley.Plot.Core
 {
-    public class ResourceRef: Entity
+    public class CharacteRef
     {
-        [JsonProperty("R")]
-        public string Reference { get; set; }
+        [JsonProperty("C")]
+        public EntityId CharacterId { get; set; }
+
+        [JsonProperty("A")]
+        public EntityId AliasId { get; set; }
     }
 }

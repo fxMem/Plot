@@ -14,6 +14,8 @@ namespace PlainValley.Plot.Core
 
         public MultiLangText Title { get; set; }
 
+        public MultiLangText Description { get; set; }
+
         public List<string> Authors { get; set; }
 
         public ScriptVersion Version { get; set; }
